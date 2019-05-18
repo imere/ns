@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>利用iframe本地localStorage的扩容</title>
+  </head>
+
+  <body>
+    <div>iframe2</div>
+    <div>
+      <div id="f2s"></div>
+      <button id="get">get</button>
+      <button id="set">set</button>
+      <button id="rem">remove</button>
+    </div>
+    <script>
+      window.onload = function() {
+        document.querySelector('#get').onclick = function(e) {
+          top.postMessage({ type: 'get', k: 1 }, '*');
+        };
+        document.querySelector('#set').onclick = function(e) {
+          top.postMessage({ type: 'set', k: 1, v: 1 }, '*');
+        };
+        document.querySelector('#rem').onclick = function(e) {
+          top.postMessage({ type: 'rem', k: 1 }, '*');
+        };
+        window.onmessage = function(e) {
+          console.log('from 1', e.data);
+          e.source.postMessage('22', e.origin);
+        };
+      };
+    </script>
+  </body>
+</html>

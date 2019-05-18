@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+
+<body>
+</body>
+<script type="text/javascript">
+var fn = function() {};
+fn.prototype = {
+    setLocal: function(key, value) {
+        localStorage.setItem(key, value);
+    },
+    getLocal: function(key) {
+        return localStorage.getItem(key);
+    },
+    removeLocal: function(key) {
+        localStorage.removeItem(key);
+    },
+    bindEvent: function() {
+        var self = this;
+        //监听
+        window.addEventListener('message', function(e) {
+            console.log("我收到信息了");
+            if (window.parent != e.source) return;
+            var option = JSON.parse(e.data);
+            if (option.type.toLowerCase() == "get") {
+                var data = self.getLocal(option.key);
+                window.parent.postMessage(data, '*');
+            }
+            option.type.toLowerCase() == "set" && self.setLocal(option.key, option.value);
+            option.type.toLowerCase() == "remove" && self.removeLocal(option.key);
+        })
+    },
+    init: function() {
+        var self = this;
+        self.bindEvent();
+    }
+}
+var tools = new fn();
+tools.init();
+</script>

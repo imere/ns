@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Page A</title>
+</head>
+<body>
+  <h1>This is Page A</h1>
+  <button id="openNewWindowBtn" type="button">Open New Window</button>
+  <button id="postMessageBtn" type="button">Post Message</button>
+  <p id="message"></p>
+  <iframe id="receiverIframe" src="http://127.0.0.1:8082/pageb.html" frameborder="1" width="800" height="500"></iframe>
+  <script>
+    window.onload = function() {
+      var receiver = document.getElementById('receiverIframe').contentWindow;
+      var postBtn = document.getElementById('postMessageBtn');
+      var openBtn = document.getElementById('openNewWindowBtn');
+      var messageEle = document.getElementById('message');
+
+      function sendMessage() {
+        receiver.postMessage('Hello Page B.. This is page A.. You are my iframe', 'http://127.0.0.1:8081');
+      }
+
+      function openNewWindow() {
+        var pageB = window.open('http://192.168.198.157:3000/pageB.html');
+
+        setTimeout(function() {
+          pageB.postMessage('Hello Page B.. This is Page A.. (form PageA window.open())', 'http://192.168.198.157:3000');
+        }, 500)
+      }
+
+      function receiveMessage(event) {
+        console.log(event);
+
+        if (event.origin !== 'http://192.168.198.157:3000') return;
+
+        messageEle.innerHTML = "Message Received: " + event.data;
+      }
+
+      postBtn.addEventListener('click', sendMessage, false);
+
+      openBtn.addEventListener('click', openNewWindow, false);
+
+      window.addEventListener('message', receiveMessage, false);
+    }
+  </script>
+</body>
+</html>

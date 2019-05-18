@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>利用图片计算网速</title>
+  </head>
+  <body>
+    <script>
+      var url = 'favicon.ico';
+      window.onload = function() {
+        var img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.src = url;
+        var s = Date.now();
+        img.onload = function(event) {
+          var e = Date.now();
+          console.log((4.1 / ((e - s) / 1000)).toFixed(3) + 'kb/s');
+        };
+      };
+    </script>
+  </body>
+</html>

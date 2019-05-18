@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cross domain</title>
+</head>
+<body>
+    <h2>Status</h2>
+    <p></p>
+    <a href="http://www.test2.com/index_b.html">去index_b查看结果</a>
+     <iframe src="http://dev.yidengxuetang.com:8082/demo1.html"></iframe>
+    <script>
+        window.onload = function(){
+            //在页面加载完成后主页面向iframe发送请求
+            window.frames[0].contentWindow.postMessage('jogging, reading and writing','http://dev.yidengxuetang.com/');
+        }
+
+        // 主页面监听message事件,
+        window.addEventListener('message', function(e){
+            var data = e.data;
+            document.querySelector('p').innerHTML = data;
+        }, false);
+    </script>
+</body>
+</html>
