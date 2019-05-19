@@ -14,3 +14,11 @@
     - event.rotationRate
       - alpha, beta, gamma
   - 校准提示: compassneedscalibration
+
+## demo
+
+[造物节](./creation_festival/index.html)
+
+[造物节canvas](./practice/index.html)
+
+[全景](./panorama/index.html)

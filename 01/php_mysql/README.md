@@ -51,7 +51,7 @@ class Person
 
  public function __toString()
  {
-   return $this->age;
+   return (string)$this->age; // 必须是字符串
  }
 
  public function __destruct()
@@ -68,11 +68,13 @@ var_dump($c->k); // string(1) "3"
 echo $c->ue; // k is ue
 
 echo "\n";
-echo isset($c->age) ? 'set' : 'not'; // not
+echo isset($c->age) ? "set\n" : "not\n"; // not
+
+$c1 = clone $c;
 
 unset($c->age);
 
-$c1 = clone $c;
+echo $c; // 空字符串
 echo $c1; // 23
 ```
 
@@ -113,8 +115,8 @@ class Student extends Person implements Action
   }
 }
 $c = new Student();
-$c->study();
-echo $c::NAME;
+$c->study(); // normal
+echo $c::NAME; // name
 ```
 
 ### 错误
