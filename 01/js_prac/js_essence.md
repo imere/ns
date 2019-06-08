@@ -36,7 +36,7 @@ c.__proto__ === P.prototype;
 
 ## 柯里化
 
-> 用部分参数生成函数, 减少参数
+> 用部分参数生成函数, 减少参数, 可分步求值
 
 ```js
 function f(n) {
@@ -61,11 +61,15 @@ fn(5); // 对比 f(g(5))
 
 ```js
 Function.prototype.uncurry = function() {
+  // `this` 指调用uncurry的函数, 设这个函数是 `fn`
+  // 返回的函数是`fn.call`
   return this.call.bind(this);
 };
 
+// 变量 `push` 实际为 `Array.prototype.push.call`
 var push = Array.prototype.push.uncurry();
 var arr = [];
+// 以下调用实际为 Array.prototype.push.call(..., ...)
 push(arr, 1);
 push(arr, 2);
 ```
