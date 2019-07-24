@@ -24,6 +24,79 @@ d = 4; // 全局作用域
 ## 函数
 
 ```js
+// 函数声明提升优先
+console.log(typeof v); // function
+var v = 9;
+console.log(typeof v); // number
+function v() {}
+console.log(typeof v); // number
+// 等于:
+function v() {}
+var v;
+console.log(typeof v); // function
+v = 9;
+console.log(typeof v); // number
+console.log(typeof v); // number
+```
+
+```js
+// 严格模式 限制内部直接出现的`this`隐式指window
+(function f() {
+  'use strict';
+  function fn() {
+    console.log(this); // undefined
+  }
+  fn();
+})();
+//----------------------------------
+function fn() {
+  console.log(this); // window
+}
+(function f() {
+  'use strict';
+  fn();
+})();
+```
+
+```js
+// 块级函数保护
+function f() {
+  f = 1;
+}
+f();
+console.log(typeof f); // number
+console.log(typeof f); // number
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+{
+  function f() {
+    f = 1;
+  }
+  f();
+  console.log(typeof f); // number
+}
+console.log(typeof f); // function
+```
+
+```js
+// 函数作表达式时外部不可获取函数名
+if (function f() {}) {
+  console.log(typeof f); // undefined
+}
+//----------------------------------------
+var fn = function f() {
+  // 内部可获取
+  console.log(typeof f); // function
+};
+console.log(typeof f); // undefined
+fn();
+//----------------------------------------
+(function f() {
+  console.log(typeof f); // function
+})();
+console.log(typeof f); // undefined
+```
+
+```js
 // 原型链
 function P() {}
 var c = new P();
