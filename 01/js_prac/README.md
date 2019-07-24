@@ -2,6 +2,8 @@
 
 ## [JavaScript与QA工程师](./QA.md)
 
+## [JavaScript函数式编程](./FP.md)
+
 ## [JavaScript语言精髓](./js_essence.md)
 
 ## [ES6在企业中的应用](./ES6_in_co.md)

@@ -59,7 +59,7 @@ function fn() {
 ```
 
 ```js
-// 块级函数保护
+// 块级函数名保护
 function f() {
   f = 1;
 }
@@ -106,58 +106,6 @@ c.__proto__ === P.prototype;
 ## 继承
 
 > 子类得到父类属性、方法, 且保留 constructor
-
-## 柯里化
-
-> 用部分参数生成函数, 减少参数, 可分步求值
-
-```js
-function f(n) {
-  return n * n;
-}
-function g(n) {
-  return n * 2;
-}
-function pipe(f, g) {
-  return function() {
-    return f.call(null, g.apply(null, arguments));
-  };
-}
-var fn = pipe(
-  f,
-  g
-);
-fn(5); // 对比 f(g(5))
-```
-
-## 反柯里化
-
-```js
-Function.prototype.uncurry = function() {
-  // `this` 指调用uncurry的函数, 设这个函数是 `fn`
-  // 返回的函数是`fn.call`
-  return this.call.bind(this);
-};
-
-// 变量 `push` 实际为 `Array.prototype.push.call`
-var push = Array.prototype.push.uncurry();
-var arr = [];
-// 以下调用实际为 Array.prototype.push.call(..., ...)
-push(arr, 1);
-push(arr, 2);
-```
-
-## 尾递归
-
-> 尾调用指某函数最后一步调用另一函数。尾调用自身称尾递归
-
-```js
-function tailFactorial(n, total) {
-  if (n === 1) return total;
-  return tailFactorial(n - 1, n * total);
-}
-tailFactorial(5, 5);
-```
 
 ## 作用域链
 
