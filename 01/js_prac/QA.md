@@ -10,15 +10,11 @@
 
 TDD
 
-> 关注**功能**是否实现(better-assert)
+> 测试先行. 关注**功能**是否实现
 
 BDD
 
-> 关注**整体**行为是否符合整体(should, expect, jasmine)
-
-TDD + BDD
-
-> (chai)
+> 业务先行. 关注**整体**行为是否符合整体
 
 ## 流程
 
@@ -52,6 +48,9 @@ TDD + BDD
 ## 工具
 
 - benchmark
+- karma
+- mocha
+- backstopjs
 - supertest
 - rize
 - selenium-webdriver
