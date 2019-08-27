@@ -44,16 +44,6 @@ node server.js
 #Server is running
 ```
 
-## NodeJS 环境及 npm 深入
-
-```bash
-# 进入REPL
-node
-
-# 使用包管理工具npm
-npm <command>
-```
-
 ## 回调函数
 
 ```js
@@ -108,17 +98,6 @@ module.exports = Hello;
 
 // main.js
 var hello = require('./hello'); // 相对路径
-```
-
-## 函数
-
-```js
-var http = require('http');
-// 匿名函数
-http.createServer(function(req, res) {});
-// 先定义
-function onRequest(req, res) {}
-http.createServer(onRequest);
 ```
 
 ## 路由

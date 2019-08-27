@@ -21,6 +21,37 @@ const c = 3; // 块作用域
 d = 4; // 全局作用域
 ```
 
+## 块级作用域实现
+
+```javascript
+/* ES5 */
+try {
+  throw 1;
+} catch(a) {
+  alert(a); // 1
+}
+alert(a); // is not defined
+```
+
+## 变量提升
+
+```js
+function fn() {
+  if (false) {
+    var a = 1;
+  }
+  alert(a);
+}
+// 相当于
+function fn() {
+  var a; // var为函数级作用域
+  if (false) {
+    a = 1;
+  }
+  alert(a); // undefined
+}
+```
+
 ## 函数
 
 ```js
@@ -96,12 +127,82 @@ fn();
 console.log(typeof f); // undefined
 ```
 
+## 闭包垃圾回收
+
+```javascript
+function fn() {
+  var a = 1; // 回收
+  return function () {
+    alert(1);
+  }
+}
+
+// eval: 不对LexicalEnvironment进行任何的解绑
+function fn() {
+  var a = 1; // 不回收
+  return function () {
+    eval(""); // 因为无法静态分析
+  }
+}
+
+function fn() {
+  var a = 1; // 回收
+  return function () {
+    window.eval("");
+  }
+}
+
+// with: 放弃全部变量的回收
+var outter = {
+    age:20
+};
+with(outter){
+    name = "name";
+};
+console.log(name); // name
+
+// try..catch(ex): 不会回收ex
+// ex是未定义变量 -> 延长了作用域链, 引用LexicalEnvironment
+try {
+  throw new Error('');
+} catch(ex) {}
+
+// new Function(" "): scope LexicalEnvironment
+// new Function(字符串) 绑定全局
+var test = "outter";
+function init() {
+    var test = "inner";
+    var fn = new Function("console.log(test)");
+    fn(); // outer
+}
+init();
+// new Function(立即执行的函数) 绑定当前
+var test = "outter";
+function init() {
+    var test = "inner";
+    new Function(console.log(test)); // inner
+}
+init();
+```
+
+## 原型链
+
+```javascript
+function fn() {
+  this.a = 1;
+}
+fn.prototype.a = 2;
+var obj = new fn;
+alert(obj.a); // 1  constructor优先(fn.prototype.constructor === fn)
+```
+
 ```js
-// 原型链
 function P() {}
 var c = new P();
 c.__proto__ === P.prototype;
 ```
+
+![原型链](./原型链.jpeg)
 
 ## 继承
 
@@ -148,4 +249,29 @@ var c = fun(0).fun(1);
 
 c.fun(2);
 c.fun(3);
+```
+
+## this
+
+> 指向调用者
+
+```js
+function test() {
+  alert(this.m === undefined);
+}
+test(); // true, 指向window
+window.test(); // true, 指向window
+
+this.m = 1000;
+var o = {
+  m: 500,
+  test: function() {
+    alert(this.m);
+    return function() {
+      alert(this.m);
+    };
+  },
+};
+var f = o.test(); // 500, 指o
+f(); // 1000, 指window
 ```

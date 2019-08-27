@@ -19,17 +19,10 @@ BDD
 ## 流程
 
 - 单元测试
-
-1. before
-2. beforeEach
-3. it
-4. after
-5. afterEach
-
 - 覆盖率
 - 基准测试
   - 抽样统计
-- 压力测试(ab, siege, http_load)
+- 压力测试(ab, wrk, siege, http_load)
   - 吞吐率
   - 响应时间
   - 并发数
@@ -54,3 +47,4 @@ BDD
 - supertest
 - rize
 - selenium-webdriver
+- uirecorder

@@ -6,20 +6,9 @@
 #切换运行级别
 init [OPTION]
 
-#显示文件/目录信息
-ls [OPTION]... [FILE]...
-
 #显示当前目录
 pwd
 
-#切换目录
-cd [-L|[-P [-e]] [-@]] [dir]
-
-#创建单文件夹
-mkdir [OPTION]... DIRECTORY...
-
-#复制文件到文件
-cp [OPTION]... [-T] SOURCE DEST
 #复制单文件到目录
 cp [OPTION]... SOURCE... DIRECTORY
 #复制多文件到目录
@@ -40,9 +29,6 @@ cat [OPTION]... [FILE]...
 ```cmd
 @REM 显示文件/目录信息
 dir
-
-@REM 切换目录
-cd DIRECTORY
 
 @REM 新建文件夹
 md DIRECTORY

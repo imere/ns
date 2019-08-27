@@ -75,28 +75,3 @@ Array.prototype.reduceRight;
 ## Function.prototype.bind
 
 > 改变`this`
-
-## this
-
-> 指向调用者
-
-```js
-function test() {
-  alert(this.m === undefined);
-}
-test(); // true, 指向window
-window.test(); // true, 指向window
-
-this.m = 1000;
-var o = {
-  m: 500,
-  test: function() {
-    alert(this.m);
-    return function() {
-      alert(this.m);
-    };
-  },
-};
-var f = o.test(); // 500, 指o
-f(); // 1000, 指window
-```

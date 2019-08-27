@@ -2,35 +2,33 @@
 
 ## [专题一](./01/README.md)
 
-### JavaScript语言新发展
-
 ### 预读
 
 ### Linux基础入门
 
-### EcmaScript5.1新增语法【上】
-
-### EcmaScript5.1新增语法【下】
-
-### PHP 与 MySQL开发入门【上】
-
-### PHP 与 MySQL开发入门【中】
-
-### PHP 与 MySQL开发入门【下】
+### EcmaScript5.md
 
 ### EcmaScript6
 
-### JavaScript 语言新发展
+### JavaScript语言精髓
+
+### JavaScript函数式编程
+
+### JavaScript与QA工程师
+
+### PHP与MySQL开发入门
 
 ## [专题二](./02/README.md)
-
-### 大话NodeJS
 
 ### NodeJS基础API
 
 ### Express入门
 
 ### KOA1入门
+
+### HTTP协议
+
+### 大规模Nodejs项目架构与优化
 
 ## [专题三](./03/README.md)
 
