@@ -38,10 +38,7 @@ function pipe(f, g) {
     return f.call(null, g.apply(null, arguments));
   };
 }
-var fn = pipe(
-  f,
-  g
-);
+var fn = pipe(f, g);
 fn(5); // 对比 f(g(5))
 ```
 
@@ -73,19 +70,16 @@ var toUpperCase = word => word.toUpperCase();
 
 var split = x => str => str.split(x);
 
-var f = compose(
-  split(' '),
-  toUpperCase
-);
+var f = compose(split(" "), toUpperCase);
 
-f('abcd efgh');
+f("abcd efgh");
 ```
 
 ## Monad
 
 ```js
-var fs = require('fs');
-var _ = require('lodash');
+var fs = require("fs");
+var _ = require("lodash");
 
 // Functor 是一种容器类型
 class Functor {
@@ -125,29 +119,24 @@ class IO extends Monad {
 
   // Applicative 的方法定义为这样: 接收 含函数的容器 和 函数, 返回另一个 含函数的容器
   map(f) {
-    return IO.of(
-      compose(
-        f,
-        this.val
-      )
-    );
+    return IO.of(compose(f, this.val));
   }
 }
 
 var readFile = function(filename) {
   return IO.of(function() {
-    return fs.readFileSync(filename, 'utf-8');
+    return fs.readFileSync(filename, "utf-8");
   });
 };
 
 var print = function(x) {
-  console.log('p');
+  console.log("p");
   return IO.of(function() {
-    return x + ' 函数式';
+    return x + " 函数式";
   });
 };
 
-const result = readFile('./txt') // 返回容器 IO
+const result = readFile("./txt") // 返回容器 IO
   // flatMap 返回的是函数 compose
   .flatMap(print);
 

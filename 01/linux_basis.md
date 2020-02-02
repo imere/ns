@@ -1,6 +1,6 @@
-# Linux基础入门
+# Linux 基础入门
 
-## Linux基本命令
+## Linux 基本命令
 
 ```bash
 #切换运行级别
@@ -24,7 +24,7 @@ touch [OPTION]... FILE...
 cat [OPTION]... [FILE]...
 ```
 
-## Windows基本命令
+## Windows 基本命令
 
 ```cmd
 @REM 显示文件/目录信息

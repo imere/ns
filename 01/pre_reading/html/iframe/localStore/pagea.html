@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Page A</title>
 </head>
+
 <body>
   <h1>This is Page A</h1>
   <button id="openNewWindowBtn" type="button">Open New Window</button>
@@ -11,7 +13,7 @@
   <p id="message"></p>
   <iframe id="receiverIframe" src="http://127.0.0.1:8082/pageb.html" frameborder="1" width="800" height="500"></iframe>
   <script>
-    window.onload = function() {
+    window.onload = function () {
       var receiver = document.getElementById('receiverIframe').contentWindow;
       var postBtn = document.getElementById('postMessageBtn');
       var openBtn = document.getElementById('openNewWindowBtn');
@@ -24,7 +26,7 @@
       function openNewWindow() {
         var pageB = window.open('http://192.168.198.157:3000/pageB.html');
 
-        setTimeout(function() {
+        setTimeout(function () {
           pageB.postMessage('Hello Page B.. This is Page A.. (form PageA window.open())', 'http://192.168.198.157:3000');
         }, 500)
       }
@@ -45,4 +47,5 @@
     }
   </script>
 </body>
+
 </html>

@@ -5,20 +5,20 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <style>
-    .test {
-        color: expression(alert('XSS'));
-        background: url(javascript:alert('script injected'))
-    }
+        .test {
+            color: expression(alert('XSS'));
+            background: url(javascript:alert('script injected'))
+        }
 
-     .test::after {
-        content:  url(javascript:alert('script injected'))
-    }
+        .test::after {
+            content: url(javascript:alert('script injected'))
+        }
     </style>
 </head>
 
 <body>
     <div class="test">
-    	æµ‹è¯•
+        æµ‹è¯•
     </div>
 </body>
 

@@ -10,7 +10,7 @@
 
 ```js
 function f() {
-  'use strict';
+  "use strict";
   a = 3; // 隐式全局
   alert(a);
 }
@@ -21,10 +21,10 @@ f(); // ReferenceError: a is not defined
 
 ```js
 function f() {
-  'use strict';
+  "use strict";
   var o = {
     a: 1,
-    a: 1,
+    a: 1
   };
 }
 f(); // chrome此例无报错
@@ -34,9 +34,10 @@ f(); // chrome此例无报错
 
 ```js
 function f() {
-  'use strict';
+  "use strict";
   var o = { o: 0 };
-  with (o) {}
+  with (o) {
+  }
 }
 f(); // SyntaxError: Strict mode code may not include a with statement
 ```
@@ -51,7 +52,7 @@ function f(a) {
 f(0); // 98
 
 function f(a) {
-  'use strict';
+  "use strict";
   arguments[0] = 98; // 静默失败
   console.log(a);
 }

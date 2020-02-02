@@ -21,87 +21,104 @@
 */
 
 function sizeof(str, charset) {
-    var strCode = 0,
-        charCode;
-    charset = charset ? charset.toLowerCase() : '';
-    if (charset == 'utf-16' || charset == 'utf16') {
-        for (var i = 0, len = str.length; i < len; i++) {
-            charCode = str.charCodeAt(i);
-            strCode += charCode < 0xffff ? 2 : 4;
-        }
-    } else {
-        for (var i = 0, len = str.length; i < len; i++) {
-            charCode = str.charCodeAt(i);
-            strCode += (charCode < 0x007f && 1) || (charCode < 0x07ff && 2) || (charCode < 0xffff && 3) || 4;
-        }
+  var strCode = 0,
+    charCode;
+  charset = charset ? charset.toLowerCase() : "";
+  if (charset == "utf-16" || charset == "utf16") {
+    for (var i = 0, len = str.length; i < len; i++) {
+      charCode = str.charCodeAt(i);
+      strCode += charCode < 0xffff ? 2 : 4;
     }
-    return strCode / 1024 / 1024 / 2;
+  } else {
+    for (var i = 0, len = str.length; i < len; i++) {
+      charCode = str.charCodeAt(i);
+      strCode +=
+        (charCode < 0x007f && 1) ||
+        (charCode < 0x07ff && 2) ||
+        (charCode < 0xffff && 3) ||
+        4;
+    }
+  }
+  return strCode / 1024 / 1024 / 2;
 }
 /*测试localStorage中字符串的编码格式结束*/
 
 function storage(type, key, value) {
-    var val = localStorage.getItem(key);
-    switch (type) {
-        case 'get':
-            if (val) {
-                return val;
-            } else {
-                return window.frames[0].postMessage(JSON.stringify({ type: type, key: key }), 'http://localhost:8081');
-            }
-            break;
-        case 'set':
-            // if (!val && sizeofLocal() + sizeof(value) > 5) {
-            window.frames[0].postMessage(JSON.stringify({ type: type, key: key, value: value }), 'http://localhost:8081');
-            // } else {
-            //     localStorage.setItem(key, value);
-            // }
-            break;
-        case 'remove':
-            if (val) {
-                localStorage.removeItem(key);
-            } else {
-                window.frames[0].postMessage(JSON.stringify({ type: type, key: key }), 'http://localhost:8081');
-            }
-            break;
-        default:
-            break;
-    }
+  var val = localStorage.getItem(key);
+  switch (type) {
+    case "get":
+      if (val) {
+        return val;
+      } else {
+        return window.frames[0].postMessage(
+          JSON.stringify({ type: type, key: key }),
+          "http://localhost:8081"
+        );
+      }
+      break;
+    case "set":
+      // if (!val && sizeofLocal() + sizeof(value) > 5) {
+      window.frames[0].postMessage(
+        JSON.stringify({ type: type, key: key, value: value }),
+        "http://localhost:8081"
+      );
+      // } else {
+      //     localStorage.setItem(key, value);
+      // }
+      break;
+    case "remove":
+      if (val) {
+        localStorage.removeItem(key);
+      } else {
+        window.frames[0].postMessage(
+          JSON.stringify({ type: type, key: key }),
+          "http://localhost:8081"
+        );
+      }
+      break;
+    default:
+      break;
+  }
 }
 
 function sizeofLocal() {
-    var myStr = '',
-        charCode, strCode = 0;
-    for (item in localStorage) {
-        if (localStorage.hasOwnProperty(item)) {
-            myStr += localStorage.getItem(item);
-        }
+  var myStr = "",
+    charCode,
+    strCode = 0;
+  for (item in localStorage) {
+    if (localStorage.hasOwnProperty(item)) {
+      myStr += localStorage.getItem(item);
     }
-    for (var i = 0, len = myStr.length; i < len; i++) {
-        charCode = myStr.charCodeAt(i);
-        strCode += charCode < 0xffff ? 2 : 4;
-    }
-    return strCode / 1024 / 1024 / 2;
+  }
+  for (var i = 0, len = myStr.length; i < len; i++) {
+    charCode = myStr.charCodeAt(i);
+    strCode += charCode < 0xffff ? 2 : 4;
+  }
+  return strCode / 1024 / 1024 / 2;
 }
 
-var myStr = '';
+var myStr = "";
 for (var i = 0; i < 1024 * 1200; i++) {
-    myStr += 1 + '12' + '啦';
+  myStr += 1 + "12" + "啦";
 }
-$("#test").on('load', function(argument) {
-      window.frames[0].postMessage(JSON.stringify({ type: "set", key: "zhijia", value: 123 }), 'http://localhost:8081');
-    // document.querySelector(".set").onclick = function() {
-    //     storage("set", "yoyo", myStr);
-    // }
+$("#test").on("load", function(argument) {
+  window.frames[0].postMessage(
+    JSON.stringify({ type: "set", key: "zhijia", value: 123 }),
+    "http://localhost:8081"
+  );
+  // document.querySelector(".set").onclick = function() {
+  //     storage("set", "yoyo", myStr);
+  // }
 
-    // document.querySelector(".get").onclick = function() {
-    //     alert(1);
-    //     storage("get", "yoyo");
-    //     window.addEventListener('message', function(e) {
-    //         window.myStorage = e.data;
-    //     })
-    // }
+  // document.querySelector(".get").onclick = function() {
+  //     alert(1);
+  //     storage("get", "yoyo");
+  //     window.addEventListener('message', function(e) {
+  //         window.myStorage = e.data;
+  //     })
+  // }
 
-    // document.querySelector(".remove").onclick = function() {
-    //     storage("remove", "yoyo");
-    // }
-})
+  // document.querySelector(".remove").onclick = function() {
+  //     storage("remove", "yoyo");
+  // }
+});

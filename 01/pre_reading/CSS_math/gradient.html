@@ -1,103 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>gradient</title>
-  </head>
-  <style>
-    @import url('https://fonts.googleapis.com/css?family=Lobster');
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-    }
 
-    :root {
-      --tip-diameter: 10px;
-      --tip-length: 15px;
-      --w: 200px;
-      --h: 100px;
-      --handle-diameter: 10px;
-      --handle-length: 150px;
-    }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>gradient</title>
+</head>
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Lobster');
 
-    body {
-      background-color: rgb(184, 26, 149);
-    }
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 
-    .g {
-      position: relative;
-      width: var(--w);
-      height: var(--h);
-      margin: 4rem auto var(--handle-length);
-      background-image: radial-gradient(
-          150px 500px ellipse at 50% 100%,
-          rgba(248, 195, 205, 0.5) 0%,
-          rgba(248, 195, 205, 1) 20%,
-          #000000 20%,
-          rgba(244, 167, 185, 1) 20%,
-          transparent 100%
-        ),
-        radial-gradient(
-          150px 250px ellipse at 50% 100%,
-          transparent 20%,
-          rgba(244, 167, 185, 1) 40%,
-          #000000 40%,
-          rgba(232, 122, 144, 1) 40%,
-          transparent 100%
-        ),
-        radial-gradient(
-          150px 252px ellipse at 50% 100%,
-          transparent 40%,
-          rgba(232, 122, 144, 1) 60%,
-          #000000 60%,
-          rgba(208, 90, 110, 1) 60%,
-          transparent 100%
-        ),
-        radial-gradient(
-          150px 165px ellipse at 50% 100%,
-          transparent 60%,
-          rgba(208, 90, 110, 1) 80%,
-          #000000 80%,
-          rgba(219, 77, 109, 1) 80%,
-          transparent 100%
-        ),
-        radial-gradient(
-          150px 124px ellipse at 50% 100%,
-          transparent 80%,
-          rgba(208, 90, 110, 1) 80%,
-          rgba(219, 77, 109, 1) 100%
-        );
-      border-radius: 50% 50% 0% 0% / 100% 100% 0% 0%;
-    }
+  :root {
+    --tip-diameter: 10px;
+    --tip-length: 15px;
+    --w: 200px;
+    --h: 100px;
+    --handle-diameter: 10px;
+    --handle-length: 150px;
+  }
 
-    .g::before {
-      content: '';
-      position: absolute;
-      top: calc(var(--tip-length) * -1);
-      left: 50%;
-      width: var(--tip-diameter);
-      height: var(--tip-length);
-      background-image: linear-gradient(90deg, #f8c3cd, #d05a6e);
-      clip-path: polygon(
-        calc(var(--tip-diameter) / 2) 0,
+  body {
+    background-color: rgb(184, 26, 149);
+  }
+
+  .g {
+    position: relative;
+    width: var(--w);
+    height: var(--h);
+    margin: 4rem auto var(--handle-length);
+    background-image: radial-gradient(150px 500px ellipse at 50% 100%,
+        rgba(248, 195, 205, 0.5) 0%,
+        rgba(248, 195, 205, 1) 20%,
+        #000000 20%,
+        rgba(244, 167, 185, 1) 20%,
+        transparent 100%),
+      radial-gradient(150px 250px ellipse at 50% 100%,
+        transparent 20%,
+        rgba(244, 167, 185, 1) 40%,
+        #000000 40%,
+        rgba(232, 122, 144, 1) 40%,
+        transparent 100%),
+      radial-gradient(150px 252px ellipse at 50% 100%,
+        transparent 40%,
+        rgba(232, 122, 144, 1) 60%,
+        #000000 60%,
+        rgba(208, 90, 110, 1) 60%,
+        transparent 100%),
+      radial-gradient(150px 165px ellipse at 50% 100%,
+        transparent 60%,
+        rgba(208, 90, 110, 1) 80%,
+        #000000 80%,
+        rgba(219, 77, 109, 1) 80%,
+        transparent 100%),
+      radial-gradient(150px 124px ellipse at 50% 100%,
+        transparent 80%,
+        rgba(208, 90, 110, 1) 80%,
+        rgba(219, 77, 109, 1) 100%);
+    border-radius: 50% 50% 0% 0% / 100% 100% 0% 0%;
+  }
+
+  .g::before {
+    content: '';
+    position: absolute;
+    top: calc(var(--tip-length) * -1);
+    left: 50%;
+    width: var(--tip-diameter);
+    height: var(--tip-length);
+    background-image: linear-gradient(90deg, #f8c3cd, #d05a6e);
+    clip-path: polygon(calc(var(--tip-diameter) / 2) 0,
         0 var(--tip-length),
-        var(--tip-diameter) var(--tip-length)
-      );
-      transform: translateX(-50%);
-    }
+        var(--tip-diameter) var(--tip-length));
+    transform: translateX(-50%);
+  }
 
-    .g::after {
-      content: '';
-      position: absolute;
-      bottom: calc(var(--handle-length) * -1);
-      left: 50%;
-      width: var(--handle-diameter);
-      height: var(--handle-length);
-      background-image: linear-gradient(
-        90deg,
+  .g::after {
+    content: '';
+    position: absolute;
+    bottom: calc(var(--handle-length) * -1);
+    left: 50%;
+    width: var(--handle-diameter);
+    height: var(--handle-length);
+    background-image: linear-gradient(90deg,
         #202020,
         #404040 5%,
         #606060 15%,
@@ -106,24 +95,24 @@
         #808080 60%,
         #606060 85%,
         #404040 95%,
-        #202020
-      );
-      transform: translateX(-50%);
-    }
+        #202020);
+    transform: translateX(-50%);
+  }
 
-    .g > p {
-      position: absolute;
-      top: calc(var(--handle-length) + 3rem);
-      left: -10%;
-      font-family: 'Lobster', cursive, 'Helvetica', sans-serif;
-      font-size: 4rem;
-      color: rgb(245, 185, 201);
-    }
-  </style>
+  .g>p {
+    position: absolute;
+    top: calc(var(--handle-length) + 3rem);
+    left: -10%;
+    font-family: 'Lobster', cursive, 'Helvetica', sans-serif;
+    font-size: 4rem;
+    color: rgb(245, 185, 201);
+  }
+</style>
 
-  <body>
-    <div class="g">
-      <p>Umbrella</p>
-    </div>
-  </body>
+<body>
+  <div class="g">
+    <p>Umbrella</p>
+  </div>
+</body>
+
 </html>

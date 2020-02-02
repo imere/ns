@@ -27,7 +27,7 @@ d = 4; // 全局作用域
 /* ES5 */
 try {
   throw 1;
-} catch(a) {
+} catch (a) {
   alert(a); // 1
 }
 alert(a); // is not defined
@@ -73,7 +73,7 @@ console.log(typeof v); // number
 ```js
 // 严格模式 限制内部直接出现的`this`隐式指window
 (function f() {
-  'use strict';
+  "use strict";
   function fn() {
     console.log(this); // undefined
   }
@@ -84,7 +84,7 @@ function fn() {
   console.log(this); // window
 }
 (function f() {
-  'use strict';
+  "use strict";
   fn();
 })();
 ```
@@ -132,55 +132,55 @@ console.log(typeof f); // undefined
 ```javascript
 function fn() {
   var a = 1; // 回收
-  return function () {
+  return function() {
     alert(1);
-  }
+  };
 }
 
 // eval: 不对LexicalEnvironment进行任何的解绑
 function fn() {
   var a = 1; // 不回收
-  return function () {
+  return function() {
     eval(""); // 因为无法静态分析
-  }
+  };
 }
 
 function fn() {
   var a = 1; // 回收
-  return function () {
+  return function() {
     window.eval("");
-  }
+  };
 }
 
 // with: 放弃全部变量的回收
 var outter = {
-    age:20
+  age: 20
 };
-with(outter){
-    name = "name";
-};
+with (outter) {
+  name = "name";
+}
 console.log(name); // name
 
 // try..catch(ex): 不会回收ex
 // ex是未定义变量 -> 延长了作用域链, 引用LexicalEnvironment
 try {
-  throw new Error('');
-} catch(ex) {}
+  throw new Error("");
+} catch (ex) {}
 
 // new Function(" "): scope LexicalEnvironment
 // new Function(字符串) 绑定全局
 var test = "outter";
 function init() {
-    var test = "inner";
-    var fn = new Function("console.log(test)");
-    fn(); // outer
+  var test = "inner";
+  var fn = new Function("console.log(test)");
+  fn(); // outer
 }
 init();
 // new Function(立即执行的函数) 绑定当前
 var test = "outter";
 function init() {
-    var test = "inner";
-    new Function(console.log(test)); // inner
+  var test = "inner";
+  new Function(console.log(test)); // inner
 }
 init();
 ```
@@ -192,7 +192,7 @@ function fn() {
   this.a = 1;
 }
 fn.prototype.a = 2;
-var obj = new fn;
+var obj = new fn();
 alert(obj.a); // 1  constructor优先(fn.prototype.constructor === fn)
 ```
 
@@ -211,14 +211,14 @@ c.__proto__ === P.prototype;
 ## 作用域链
 
 ```js
-var name = 'global';
+var name = "global";
 function A(name) {
   alert(name);
   this.name = name;
-  var name = '1';
+  var name = "1";
 }
-A.prototype.name = '2';
-var a = new A('3'); // '3'
+A.prototype.name = "2";
+var a = new A("3"); // '3'
 
 alert(a.name); // '3'
 delete a.name; // -> delete a.__proto__.name
@@ -231,7 +231,7 @@ function fun(n, o) {
   return {
     fun: function(m) {
       return fun(m, n);
-    },
+    }
   };
 }
 
@@ -270,7 +270,7 @@ var o = {
     return function() {
       alert(this.m);
     };
-  },
+  }
 };
 var f = o.test(); // 500, 指o
 f(); // 1000, 指window

@@ -28,13 +28,13 @@
       }
     </style>
   </head>
-<body>
-  <div class="middle">
-    <div class="inner">middle</div>
-  </div>
-  <div class="left">left</div>
-  <div class="right">right</div>
-</body>
+  <body>
+    <div class="middle">
+      <div class="inner">middle</div>
+    </div>
+    <div class="left">left</div>
+    <div class="right">right</div>
+  </body>
 </html>
 ```
 
@@ -53,7 +53,7 @@ BFC(块级渲染方式)
 
 ## OO(面向对象) CSS
 
-> 将⻚⾯可重⽤元素抽象成⼀个类, ⽤Class加以描述, 与其对应的HTML可看成是此类的⼀个实例
+> 将⻚⾯可重⽤元素抽象成⼀个类, ⽤ Class 加以描述, 与其对应的 HTML 可看成是此类的⼀个实例
 
 - 不要直接定义⼦节点, 应把共性声明放到⽗类
 - 结构和⽪肤相分离
@@ -93,11 +93,16 @@ ul(class="menu")
 > 修饰符使⽤的是—，⼦模块使⽤\_\_符号
 
 ```css
-.u-utility {}
-.ComponentName {}
-.ComponentName--modifierName {}
-.ComponentName-descendantName {}
-.ComponentName.is-someState {}
+.u-utility {
+}
+.ComponentName {
+}
+.ComponentName--modifierName {
+}
+.ComponentName-descendantName {
+}
+.ComponentName.is-someState {
+}
 ```
 
 ### [ACSS](http://patternlab.io/)

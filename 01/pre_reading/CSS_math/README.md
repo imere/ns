@@ -17,7 +17,7 @@
     <title>gradient</title>
   </head>
   <style>
-    @import url('https://fonts.googleapis.com/css?family=Lobster');
+    @import url("https://fonts.googleapis.com/css?family=Lobster");
     *,
     *::before,
     *::after {
@@ -80,7 +80,7 @@
     }
 
     .g::before {
-      content: '';
+      content: "";
       position: absolute;
       top: calc(var(--tip-length) * -1);
       left: 50%;
@@ -96,7 +96,7 @@
     }
 
     .g::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: calc(var(--handle-length) * -1);
       left: 50%;
@@ -121,7 +121,7 @@
       position: absolute;
       top: calc(var(--handle-length) + 3rem);
       left: -10%;
-      font-family: 'Lobster', cursive, 'Helvetica', sans-serif;
+      font-family: "Lobster", cursive, "Helvetica", sans-serif;
       font-size: 4rem;
       color: rgb(245, 185, 201);
     }
@@ -247,7 +247,7 @@
       }
 
       .distance::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: -40%;
@@ -273,7 +273,7 @@
         display: inline-block;
         width: 40%;
         height: 100%;
-        background: url('../img/car.jpg') no-repeat 0 0 / 300% 330%;
+        background: url("../img/car.jpg") no-repeat 0 0 / 300% 330%;
         clip-path: polygon(10% 20%, 95% 20%, 95% 80%, 10% 80%);
       }
 
@@ -419,29 +419,29 @@
     </div>
 
     <script>
-      const items = $('.item');
+      const items = $(".item");
       let flag = true;
-      items.on('click', function(e) {
-        $('.list .container').toggleClass('extend');
+      items.on("click", function(e) {
+        $(".list .container").toggleClass("extend");
         let curi = 0;
         $.each(items, function(i, item) {
           if (e.currentTarget === item) return;
           $(item)
-            .addClass('bounce')
-            .toggleClass('extend')
+            .addClass("bounce")
+            .toggleClass("extend")
             .children()
-            .toggleClass('extend');
+            .toggleClass("extend");
         });
         $(this)
-          .removeClass('bounce')
-          .toggleClass('extend')
+          .removeClass("bounce")
+          .toggleClass("extend")
           .children()
-          .toggleClass('extend');
+          .toggleClass("extend");
         let that = this;
         flag = !flag;
         if (flag) {
           setTimeout(function() {
-            that.scrollIntoView({ behavior: 'smooth' });
+            that.scrollIntoView({ behavior: "smooth" });
           }, 400);
         } else {
           setTimeout(function() {
