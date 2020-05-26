@@ -1,10 +1,10 @@
-# 专题一
+# 一
 
 ## JavaScript 语言新发展
 
 ## [预读](./pre_reading/README.md)
 
-## [Linux 基础入门](./linux_basis.md)
+## Linux 基础入门
 
 ## [EcmaScript5.1 新增语法](./ES5.1.md)
 

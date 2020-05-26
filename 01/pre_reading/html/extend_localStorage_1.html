@@ -1,52 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>利用iframe本地localStorage的扩容</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>利用iframe本地localStorage的扩容</title>
-</head>
-
-<body>
-  <div>
-    <div id="f1s">top</div>
-  </div>
-  <iframe src="extend_localStorage_2.html" frameborder="2"></iframe>
-  <script>
-    var Storage = function () { };
-    Storage.prototype = {
-      get: function (k) {
-        return localStorage.getItem(k);
-      },
-      set: function (k, v) {
-        localStorage.setItem(k, v);
-      },
-      remove: function (k) {
-        localStorage.removeItem(k);
-      },
-    };
-    window.onload = function () {
-      var utils = new Storage();
-      window.onmessage = function (e) {
-        if (e.origin !== window.origin) return;
-        console.log('from 2', e.data);
-        var data = e.data;
-        switch (data.type) {
-          case 'get':
-            console.log(utils.get(data.k));
-            break;
-          case 'set':
-            utils.set(data.k, data.v);
-            break;
-          case 'rem':
-            utils.remove(data.k);
-            break;
-        }
+  <body>
+    <div>
+      <div id="f1s">top</div>
+    </div>
+    <iframe src="extend_localStorage_2.html" frameborder="2"></iframe>
+    <script>
+      var Storage = function () {};
+      Storage.prototype = {
+        get: function (k) {
+          return localStorage.getItem(k);
+        },
+        set: function (k, v) {
+          localStorage.setItem(k, v);
+        },
+        remove: function (k) {
+          localStorage.removeItem(k);
+        },
       };
-      window.frames[0].postMessage(21, 'http://127.0.0.1:8080/extend_localStorage_2.html');
-    };
-  </script>
-</body>
-
+      window.onload = function () {
+        var utils = new Storage();
+        window.onmessage = function (e) {
+          if (e.origin !== window.origin) return;
+          console.log("from 2", e.data);
+          var data = e.data;
+          switch (data.type) {
+            case "get":
+              console.log(utils.get(data.k));
+              break;
+            case "set":
+              utils.set(data.k, data.v);
+              break;
+            case "rem":
+              utils.remove(data.k);
+              break;
+          }
+        };
+        window.frames[0].postMessage(
+          21,
+          "http://127.0.0.1:8080/extend_localStorage_2.html"
+        );
+      };
+    </script>
+  </body>
 </html>

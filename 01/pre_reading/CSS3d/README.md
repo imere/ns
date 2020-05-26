@@ -18,7 +18,7 @@
 
 ## demo
 
-[造物节](./creation_festival/index.html)
+[造物节 纯图片](./creation_festival/index.html)
 
 [造物节 canvas](./practice/index.html)
 

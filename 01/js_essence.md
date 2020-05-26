@@ -9,6 +9,7 @@
   - null
   - undefined
   - Symbol
+  - BigInt
 - Object
 
 ## 变量

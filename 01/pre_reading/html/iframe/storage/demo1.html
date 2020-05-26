@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>getmessage</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <script>
-        //iframe接收消息，并把当前颜色发送给主页面  
-        window.addEventListener('message', function (e) {
-            if (e.source != window.parent)
-                return;
-            console.log(e.data);
-            localStorage.setItem('task', e.data);
+      //iframe接收消息，并把当前颜色发送给主页面
+      window.addEventListener(
+        "message",
+        function (e) {
+          if (e.source != window.parent) return;
+          console.log(e.data);
+          localStorage.setItem("task", e.data);
 
-            window.parent.postMessage('finished', '*');
-        }, false);
+          window.parent.postMessage("finished", "*");
+        },
+        false
+      );
     </script>
-</body>
-
+  </body>
 </html>

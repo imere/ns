@@ -33,19 +33,6 @@ var server = app.listen(8080, function() {
 });
 ```
 
-```bash
-# tty1
-node server.js
-
-# tty2
-curl http://127.0.0.1:8080/asd?s=2
-
-# tty1
-# id: asd
-# q: { s: '2' }
-# Hello
-```
-
 [RESTful 架构](https://www.runoob.com/w3cnote/restful-architecture.html)
 
 ## Express 中间件
@@ -102,7 +89,7 @@ app.use(middleware0, middleware1);
 
 ## Express 模版引擎
 
-知名引擎有 jade(现为 pug), swig, ejs...
+引擎有 jade(现为 pug), swig, ejs...
 
 ```html
 <!-- views/index.html -->
