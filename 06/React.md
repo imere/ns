@@ -3,7 +3,7 @@
 ## class render function
 
 ```ts
-render => string | DOM | Jsx | React.createClass();
+(render) => string | DOM | Jsx | React.createClass();
 ```
 
 Jsx: createClass 语法糖, 只能一个节点
@@ -20,7 +20,7 @@ PureComponent: 值不变不更新(内部 shouldComponentUpdate 比较)
 
 <=React15: 状态靠 props, 称无状态组件
 
-## HOC(High Order Component)
+## HOC(Higher Order Component)
 
 传参不明
 
@@ -71,25 +71,9 @@ render() {
 }
 ```
 
-## ReactDOM.createPortal
-
 ## React.memo
 
 pure
-
-## React.createContext
-
-```js
-const { Provider, Consumer } = React.createContext("name");
-```
-
-## React.createRef
-
-```js
-constructor() {
-  this.ref = React.createRef()
-}
-```
 
 ## Hooks
 
@@ -127,24 +111,16 @@ useEffect(() => {
 const [value, setValue] = useState(initialValue);
 ```
 
-### useContext
-
-```js
-const ctx = React.createContext();
-
-const context = useContext(ctx);
-```
-
 ### useFetch
 
 ```js
 // before encapsulated
 const cached = {};
-const createFetcher = promiseTask => {
+const createFetcher = (promiseTask) => {
   let ref = cached;
   return () => {
     const task = promiseTask();
-    task.then(res => (ref = res));
+    task.then((res) => (ref = res));
     if (ref === cached) throw task;
     return ref;
   };
@@ -158,15 +134,15 @@ function SuspenseComponent() {
 ```
 
 ```js
-// synchronizify
+// synchronize
 const cache = new Map();
 const pending = new Map();
 function task(url) {
   if (cache.has(url)) return cache.get(url);
   if (pending.has(url)) throw pending.get(url);
   let promise = fetch(url)
-    .then(res => res.text())
-    .then(text => {
+    .then((res) => res.text())
+    .then((text) => {
       pending.delete(url);
       cache.set(url, text);
     });
@@ -190,3 +166,5 @@ async function run(task) {
 
 const d = run(task);
 ```
+
+## [Redux](./redux/index.html)

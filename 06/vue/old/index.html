@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="id"><input type="text" v-model="text" />{{text}}</div>
+    <script>
+      var batcher;
+    </script>
+    <script type="module">
+      import { Vue } from "./MVVM.js";
+      const vm = new Vue({
+        el: "id",
+        data: {
+          text: "123",
+        },
+      });
+      // for (var i = 0; i < 100; i++) {
+      //     vm['text'] = i;
+      // }
+      window.vm = vm;
+    </script>
+  </body>
+</html>

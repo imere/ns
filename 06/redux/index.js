@@ -1,13 +1,23 @@
-import createStore from "./createStore.js";
-import reducers from "./reducers/index.js";
-import combineReducers from "./combineReducers.js";
+import { createStore } from './createStore.js';
+import { combineReducers } from './combineReducers.js';
+import { add } from './action/count.js';
+import { countReducer } from './reducer/count.js';
+import { infoReducer } from './reducer/info.js';
+import { logger } from './middleware/logger.js';
+import { time } from './middleware/time.js';
+import { applyMiddleware } from './applyMiddleware.js';
 
-const store = createStore(combineReducers(reducers));
+const reducers = {
+  countReducer,
+  infoReducer
+};
 
-console.log("init", store.getState());
+const store = createStore(combineReducers(reducers), {}, applyMiddleware(logger, time));
 
-store.subscribe(() => console.log("current", store.getState()));
+store.subscribe(() => {
+  console.log('listen', store.getState());
+});
 
-store.dispatch({ type: "add" });
+console.log('state', store.getState());
 
-store.dispatch({ type: "changeinfo", payload: { info: "new" } });
+store.dispatch(add());
